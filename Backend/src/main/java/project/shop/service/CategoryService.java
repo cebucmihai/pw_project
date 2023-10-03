@@ -2,10 +2,13 @@ package project.shop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.shop.exceptions.CategoryNotFound;
 import project.shop.model.Category;
 import project.shop.repository.CategoryRepo;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -16,5 +19,24 @@ public class CategoryService {
     }
     public List<Category> listCategory(){
         return categoryRepo.findAll();
+    }
+    public Category readCategory(String categoryName) {
+        return categoryRepo.findByCategoryName(categoryName);
+    }
+
+    public Optional<Category> readCategory(Integer categoryId) {
+        return categoryRepo.findById(categoryId);
+    }
+
+    public void updateCategory(Integer categoryID, Category newCategory) throws CategoryNotFound {
+        Optional<Category> optionalCategory = categoryRepo.findById(categoryID);
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            category.setCategoryName(newCategory.getCategoryName());
+            category.setDescription(newCategory.getDescription());
+            category.setImageUrl(newCategory.getImageUrl());
+
+            categoryRepo.save(category);
+        } else throw new CategoryNotFound("The Id is wrong!");
     }
 }

@@ -3,17 +3,32 @@ package project.shop.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+
 @Entity
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
-    @NotBlank(message = "Category name is mandatory")
-    private String categoryName;
-    @NotBlank(message = "Description is mandatory")
+
+    @Column(name = "category_name")
+    private @NotBlank String categoryName;
     private @NotBlank String description;
-    @NotBlank(message = "Image is mandatory")
     private @NotBlank String imageUrl;
+
+    public Category(){
+
+    }
+    public Category(@NotBlank String categoryName, @NotBlank String description) {
+        this.categoryName = categoryName;
+        this.description = description;
+    }
+
+    public Category(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
+        this.categoryName = categoryName;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
 
     public Integer getId() {
         return id;
@@ -46,4 +61,12 @@ public class Category {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+//    public Set<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(Set<Product> products) {
+//        this.products = products;
+//    }
 }
