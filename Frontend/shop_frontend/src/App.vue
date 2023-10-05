@@ -1,27 +1,27 @@
 <template>
   <Navbar />
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view
+  <router-view v-if="categories && products"
   :baseURL="baseURL"
   :categories="categories"
   :products="products"
+  @fetchData="fetchData"
   >
   </router-view>
+
+  <Footer />
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
 import axios from 'axios';
 export default {
-  components: { Navbar },
+  components: { Navbar, Footer},
   data() {
     return {
       baseURL : "http://localhost:8080/",
-      products: [],
-      categories: []
+      products: null,
+      categories: null
     }
   },
   methods: {
@@ -71,3 +71,16 @@ export default {
 </style>
 
 Navbar
+
+
+
+
+
+
+
+
+
+
+
+
+

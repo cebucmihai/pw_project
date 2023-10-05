@@ -3,6 +3,8 @@ package project.shop.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Set;
+
 
 @Entity
 @Table(name = "categories")
@@ -15,6 +17,9 @@ public class Category {
     private @NotBlank String categoryName;
     private @NotBlank String description;
     private @NotBlank String imageUrl;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    Set<Product> products;
 
     public Category(){
 
@@ -62,11 +67,11 @@ public class Category {
         this.imageUrl = imageUrl;
     }
 
-//    public Set<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(Set<Product> products) {
-//        this.products = products;
-//    }
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }

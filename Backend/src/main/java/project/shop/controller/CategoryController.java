@@ -13,6 +13,7 @@ import project.shop.utils.Helper;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/category")
 public class CategoryController {
     @Autowired
@@ -25,6 +26,7 @@ public class CategoryController {
         categoryService.createCategory(category);
         return new ResponseEntity<>("created the category", HttpStatus.CREATED);
     }
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public List<Category> listCategory(){
         return categoryService.listCategory();

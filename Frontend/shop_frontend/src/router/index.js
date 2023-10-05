@@ -5,6 +5,10 @@ import Category from '../views/Category/Category'
 import Product from '../views/Product/Product'
 import Admin from "../views/Admin";
 import AddProduct from "../views/Product/AddProduct";
+import EditCategory from "../views/Category/EditCategory";
+import EditProduct from "../views/Product/EditProduct";
+import ShowDetails from "../views/Product/ShowDetails";
+import ListProducts from "../views/Category/ListProducts";
 
 const routes = [
   {
@@ -12,13 +16,11 @@ const routes = [
     name: 'Home',
     component: Home
   },
+    // category detail page
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/category/show/:id',
+    name: 'ListProducts',
+    component: ListProducts
   },
   {
     path: '/admin/category/add',
@@ -29,6 +31,12 @@ const routes = [
     path: '/admin/category',
     name: 'Category',
     component: Category
+  },
+    // category edit
+  {
+    path: '/admin/category/:id',
+    name: 'EditCategory',
+    component: EditCategory
   },
     // admin home page
   {
@@ -46,6 +54,19 @@ const routes = [
     path: '/admin/product/new',
     name: 'AddProduct',
     component: AddProduct
+  },
+  // edit product
+  {
+    path: '/admin/product/:id',
+    name: 'EditProduct',
+    component: EditProduct
+  },
+
+    // show details of product
+  {
+    path: '/product/show/:id',
+    name: 'ShowDetails',
+    component: ShowDetails
   }
 ]
 

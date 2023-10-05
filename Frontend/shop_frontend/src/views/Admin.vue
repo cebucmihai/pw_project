@@ -1,21 +1,80 @@
 <template>
-    <router-link :to="{name: 'Category'}" >
-        <button class="btn btn-primary btn-lg"> Admin Category</button>
-    </router-link>
-    <br />
-    <router-link :to="{name: 'AdminProduct'}" >
-        <button class="btn btn-primary btn-lg"> Admin Product</button>
-    </router-link>
-
-
+  <div class="adminPanel container">
+      <router-link :to="{name : 'AdminProduct'}">
+        <button type="button" class="btn btn-primary btn-lg">Admin Products</button>
+      </router-link>
+      <br />
+      <router-link :to="{name : 'Category'}">
+        <button type="button" class="btn btn-primary btn-lg">Admin Categories</button>
+      </router-link>
+  </div>
 </template>
 <script>
 export default {
-  name: 'AdminPage', 
+    name:"AdminPage"
+
 }
 </script>
 <style>
-    .btn {
-        margin-bottom: 20px;
-    }
+
+.adminPanel{
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
+.adminPanel button{
+  font-size: 50px;
+  width: 500px;
+  margin: 80px 0;
+}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
