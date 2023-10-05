@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.shop.dto.ProductDto;
-import project.shop.exceptions.ProductNotFound;
+import project.shop.exceptions.ProductNotFoundException;
 import project.shop.model.Category;
 import project.shop.repository.CategoryRepo;
 import project.shop.service.ProductService;
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{productId}")
-    public ResponseEntity<String> updateProduct(@PathVariable("productId") Integer productId, @RequestBody ProductDto productDto) throws ProductNotFound {
+    public ResponseEntity<String> updateProduct(@PathVariable("productId") Integer productId, @RequestBody ProductDto productDto) throws ProductNotFoundException {
         final Optional<Category> optionalCategory = categoryRepo.findById(productDto.getCategoryId());
         if(!optionalCategory.isPresent()){
             return new ResponseEntity<String>("Category doesn't exist !",HttpStatus.BAD_REQUEST);

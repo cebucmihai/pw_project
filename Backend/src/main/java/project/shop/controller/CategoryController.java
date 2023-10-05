@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import project.shop.exceptions.CategoryNotFound;
+import project.shop.exceptions.CategoryNotFoundException;
 import project.shop.model.Category;
 import project.shop.service.CategoryService;
 import project.shop.utils.Helper;
@@ -32,7 +32,7 @@ public class CategoryController {
         return categoryService.listCategory();
     }
     @PostMapping("/update/{categoryID}")
-    public ResponseEntity<String> updateCategory(@PathVariable("categoryID") Integer categoryID, @Valid @RequestBody Category category) throws CategoryNotFound {
+    public ResponseEntity<String> updateCategory(@PathVariable("categoryID") Integer categoryID, @Valid @RequestBody Category category) throws CategoryNotFoundException {
         // Check to see if the category exists.
         if (Helper.notNull(categoryService.readCategory(categoryID))) {
             // If the category exists then update it.

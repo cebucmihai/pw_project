@@ -2,7 +2,7 @@ package project.shop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import project.shop.exceptions.CategoryNotFound;
+import project.shop.exceptions.CategoryNotFoundException;
 import project.shop.model.Category;
 import project.shop.repository.CategoryRepo;
 
@@ -28,7 +28,7 @@ public class CategoryService {
         return categoryRepo.findById(categoryId);
     }
 
-    public void updateCategory(Integer categoryID, Category newCategory) throws CategoryNotFound {
+    public void updateCategory(Integer categoryID, Category newCategory) throws CategoryNotFoundException {
         Optional<Category> optionalCategory = categoryRepo.findById(categoryID);
         if (optionalCategory.isPresent()) {
             Category category = optionalCategory.get();
@@ -37,6 +37,6 @@ public class CategoryService {
             category.setImageUrl(newCategory.getImageUrl());
 
             categoryRepo.save(category);
-        } else throw new CategoryNotFound("The Id is wrong!");
+        } else throw new CategoryNotFoundException("The Id is wrong!");
     }
 }

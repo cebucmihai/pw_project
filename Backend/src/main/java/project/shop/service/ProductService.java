@@ -3,7 +3,7 @@ package project.shop.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.shop.dto.ProductDto;
-import project.shop.exceptions.ProductNotFound;
+import project.shop.exceptions.ProductNotFoundException;
 import project.shop.model.Category;
 import project.shop.model.Product;
 import project.shop.repository.ProductRepo;
@@ -39,10 +39,10 @@ public class ProductService {
         return productDtos;
     }
 
-    public void updateProduct(ProductDto productDto, Integer productId) throws ProductNotFound {
+    public void updateProduct(ProductDto productDto, Integer productId) throws ProductNotFoundException {
         Optional<Product> optProduct = productRepository.findById(productId);
         if(!optProduct.isPresent()){
-            throw new ProductNotFound("The product with this id doesn't exist!");
+            throw new ProductNotFoundException("The product with this id doesn't exist!");
         }
         Product product = optProduct.get();
         //productRepository.delete(product);
