@@ -1,7 +1,7 @@
 package project.shop.exceptions;
 
-public class AuthenticationFailException extends RuntimeException{
-    public AuthenticationFailException(String message){
-        super(message);
+public class AuthenticationFailException extends IllegalArgumentException {
+    public AuthenticationFailException(String msg){
+        super(msg);
     }
 }

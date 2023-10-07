@@ -57,9 +57,9 @@
         name:"FooterPart"
     }
 </script>
-<style>
+<style scoped>
     footer {
-        margin-top: 100px;
+        margin-top: 460px;
         background-color: #000000;
         font-size: 16px;
     }
