@@ -58,9 +58,9 @@ public class WishListController {
         return new ResponseEntity<>(productDtos, HttpStatus.OK);
 
     }
-    @DeleteMapping("/delete/{productId}")
+    @DeleteMapping("/delete/{productId}/token={token}")
     public ResponseEntity<String> removeFromWishList(@PathVariable Long productId,
-                                                     @RequestParam("token") String token) {
+                                                     @PathVariable("token") String token) {
         authenticationService.authenticate(token);
 
         User user = authenticationService.getUser(token);

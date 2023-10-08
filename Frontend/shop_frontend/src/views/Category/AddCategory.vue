@@ -31,8 +31,9 @@
   </div>
 </template>
 <script>
-const axios = require("axios");
-const sweetalert = require("sweetalert");
+import axios from "axios";
+import swal from "sweetalert";
+
 export default {
   data() {
     return {
@@ -61,9 +62,11 @@ export default {
         },
       })
         .then(() => {
-          sweetalert({
+          swal({
             text: "Category added successfully",
             icon: "success",
+          }).then(() => {
+            this.$router.push({ path: "/admin/category" }); // Redirect to the specified route
           });
         })
         .catch((err) => {
@@ -74,8 +77,7 @@ export default {
 };
 </script>
 <style scoped>
-
-.add_category button{
+.add_category button {
   margin: 60px 0;
 }
 </style>

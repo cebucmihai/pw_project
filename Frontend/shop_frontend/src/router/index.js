@@ -3,7 +3,7 @@ import Home from '../views/Home.vue'
 import AddCategory from '../views/Category/AddCategory'
 import Category from '../views/Category/Category'
 import Product from '../views/Product/Product'
-import Admin from "../views/Admin";
+import Admin from "../views/Admin/Admin";
 import AddProduct from "../views/Product/AddProduct";
 import EditCategory from "../views/Category/EditCategory";
 import EditProduct from "../views/Product/EditProduct";
