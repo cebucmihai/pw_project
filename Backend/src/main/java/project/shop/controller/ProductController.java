@@ -46,4 +46,13 @@ public class ProductController {
         productService.updateProduct(productDto, productId);
         return new ResponseEntity<String>("Product has been updated.", HttpStatus.OK);
     }
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("productId") Integer productId) {
+        try {
+            productService.deleteProduct(productId);
+            return new ResponseEntity<>("Product has been deleted.", HttpStatus.OK);
+        } catch (ProductNotFoundException e) {
+            return new ResponseEntity<>("Product not found.", HttpStatus.NOT_FOUND);
+        }
+    }
 }

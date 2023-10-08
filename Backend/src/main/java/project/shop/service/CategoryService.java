@@ -39,4 +39,13 @@ public class CategoryService {
             categoryRepo.save(category);
         } else throw new CategoryNotFoundException("The Id is wrong!");
     }
+    public void deleteCategory(Integer categoryId) throws CategoryNotFoundException {
+        Optional<Category> optionalCategory = categoryRepo.findById(categoryId);
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            categoryRepo.delete(category);
+        } else {
+            throw new CategoryNotFoundException("Category not found with ID: " + categoryId);
+        }
+    }
 }

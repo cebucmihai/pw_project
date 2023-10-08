@@ -32,6 +32,7 @@
                         </a> </li>
                     </ul>
                 </div>
+
                 <div class="col-md-3 col-6">
                     <ul style="list-style-type: none">
                         <li class="text-light font-weigh-bold pb-2">
@@ -55,11 +56,12 @@
 <script>
     export default {
         name:"FooterPart"
+
     }
 </script>
-<style scoped>
+<style>
     footer {
-        margin-top: 460px;
+        margin-top: 100px;
         background-color: #000000;
         font-size: 16px;
     }

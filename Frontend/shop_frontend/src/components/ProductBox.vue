@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <router-link :to="{name: 'ShowDetails', params: {id : product.id}}">
-                <h5 class="card-title" :class="{ 'hovered': isHovered }" @mouseover="isHovered = true" @mouseout="isHovered = false">{{ product.name }}</h5>
+                <h5 class="card-title" >{{ product.name }}</h5>
             </router-link>
             <p class="card-text">
                 {{ product.description.substring(0, 65) }}...
@@ -24,18 +24,10 @@
 <script>
     export default {
         name: "ProductBox",
-        props: ["product"],
-        isHovered: false,
+        props: ["product"]
     }
 </script>
 <style scoped>
-    .card-img-top {
-        object-fit: cover;
-    }
-    a {
-        text-decoration: none;
-    }
-    .card-title {
-        color: #484848;
-    }
+
+
 </style>

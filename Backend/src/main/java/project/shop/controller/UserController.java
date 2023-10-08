@@ -26,7 +26,6 @@ public class UserController {
     }
 
 
-    // signin
 
     @PostMapping("/signin")
     public SignInResponseDto signIn(@RequestBody SignInDto signInDto) {

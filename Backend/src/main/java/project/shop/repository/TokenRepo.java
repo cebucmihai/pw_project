@@ -6,4 +6,6 @@ import project.shop.model.User;
 
 public interface TokenRepo extends JpaRepository<AuthenticationToken, Integer> {
     AuthenticationToken findByUser(User user);
+
+    AuthenticationToken findByToken(String token);
 }

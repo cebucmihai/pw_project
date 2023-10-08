@@ -1,12 +1,17 @@
 package project.shop.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.shop.dto.ProductDto;
 import project.shop.exceptions.ProductNotFoundException;
+import project.shop.model.Cart;
 import project.shop.model.Category;
 import project.shop.model.Product;
+import project.shop.model.WishList;
+import project.shop.repository.CartRepo;
 import project.shop.repository.ProductRepo;
+import project.shop.repository.WishListRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +21,11 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     ProductRepo productRepository;
+    @Autowired
+    CartRepo cartRepo;
+    @Autowired
+    WishListRepo wishListRepo;
+
     public static ProductDto getDtoFromProduct(Product product) {
         ProductDto productDto = new ProductDto(product);
         return productDto;
@@ -45,9 +55,35 @@ public class ProductService {
             throw new ProductNotFoundException("The product with this id doesn't exist!");
         }
         Product product = optProduct.get();
-        //productRepository.delete(product);
         product = getProductFromDto(productDto , product.getCategory());
         product.setId(productId);
         productRepository.save(product);
     }
+    @Transactional
+    public void deleteProduct(Integer productId) throws ProductNotFoundException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            Optional<Cart> cartItem = cartRepo.findByProductId(product.getId());
+            if (cartItem.isPresent()) {
+                cartRepo.deleteByProductId(product.getId());
+            }
+
+            // Check if the product is in the wishlist
+            Optional<WishList> wishListItem = wishListRepo.findByProductId(product.getId());
+            if (wishListItem.isPresent()) {
+                wishListRepo.deleteByProductId(product.getId());
+            }
+            productRepository.delete(product);
+        } else {
+            throw new ProductNotFoundException("Product not found with ID: " + productId);
+        }
+    }
+    public Product getProductById(Integer productId) throws ProductNotFoundException {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (!optionalProduct.isPresent())
+            throw new ProductNotFoundException("Product id is invalid " + productId);
+        return optionalProduct.get();
+    }
+
 }

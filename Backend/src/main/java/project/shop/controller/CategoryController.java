@@ -43,4 +43,14 @@ public class CategoryController {
         // If the category doesn't exist then return a response of unsuccessful.
         return new ResponseEntity<>("category does not exist", HttpStatus.NOT_FOUND);
     }
+    @DeleteMapping("/delete/{categoryID}")
+    public ResponseEntity<String> deleteCategory(@PathVariable("categoryID") Integer categoryID) {
+        try {
+            categoryService.deleteCategory(categoryID);
+            return new ResponseEntity<>("deleted the category", HttpStatus.OK);
+        } catch (CategoryNotFoundException e) {
+            return new ResponseEntity<>("category does not exist", HttpStatus.NOT_FOUND);
+        }
+    }
 }
+
