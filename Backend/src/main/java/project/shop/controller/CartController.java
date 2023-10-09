@@ -56,7 +56,6 @@ public class CartController {
     @DeleteMapping("/delete/{cartItemId}/{token}")
     public ResponseEntity<String> deleteCartItem(@PathVariable("cartItemId") Integer itemId,
                                                  @PathVariable("token") String token) {
-        System.out.println("itemId = " + itemId + ", token = " + token);
 
         authenticationService.authenticate(token);
 

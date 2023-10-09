@@ -21,6 +21,9 @@
             <label>Image</label>
             <input type="text" class="form-control" v-model="imageUrl" />
           </div>
+          <router-link :to="{ name: 'Category' }" style="float: left; margin-right: 10px">
+          <button class="btn">Back</button>
+        </router-link>
           <button type="button" class="btn btn-primary" @click="addCategory">
             Submit
           </button>

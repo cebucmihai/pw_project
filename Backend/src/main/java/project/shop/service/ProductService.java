@@ -64,10 +64,7 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isPresent()) {
             Product product = optionalProduct.get();
-            Optional<Cart> cartItem = cartRepo.findByProductId(product.getId());
-            if (cartItem.isPresent()) {
-                cartRepo.deleteByProductId(product.getId());
-            }
+            cartRepo.deleteByProductId(product.getId());
 
             // Check if the product is in the wishlist
             Optional<WishList> wishListItem = wishListRepo.findByProductId(product.getId());

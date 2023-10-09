@@ -103,7 +103,7 @@ export default {
         return;
       }
 
-      axios.delete(`${this.baseURL}wishlist/delete/${this.product.id}?token=${this.token}`)
+      axios.delete(`${this.baseURL}wishlist/delete/${this.product.id}/token=${this.token}`)
         .then(() => {
           this.isInWishlist = false;
           this.wishListString = "Add to Wishlist";
@@ -117,29 +117,32 @@ export default {
         });
     },
     addToCart() {
-      if (!this.token) {
-        swal({
-          text: "Please LogIn to add item to cart",
-          icon: "error",
-        });
-        return;
-      }
+    if (!this.token) {
+      swal({
+        text: "Please LogIn to add item to cart",
+        icon: "error",
+      });
+      return;
+    }
 
-      axios
-        .post(`${this.baseURL}cart/add?token=${this.token}`, {
-          productId: this.id,
-          quantity: this.quantity,
-        })
-        .then((res) => {
-          if (res.status == 201) {
-            swal({
-              text: "Product added to cart",
-              icon: "success",
-            });
-          }
-        })
-        .catch((err) => console.log("err", err));
-    },
+    axios
+      .post(`${this.baseURL}cart/add?token=${this.token}`, {
+        productId: this.id,
+        quantity: this.quantity,
+      })
+      .then((res) => {
+        if (res.status == 201) {
+         
+          swal({
+            text: "Product added to cart",
+            icon: "success",
+          });
+
+
+        }
+      })
+      .catch((err) => console.log("err", err));
+  },
     toggleWishlist() {
       if (this.isInWishlist) {
         this.removeFromWishlist();
