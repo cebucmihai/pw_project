@@ -7,7 +7,7 @@
         <div class="col-12 text-center">
           
           <h2 class="pt-3">
-            <router-link :to="{ name: 'ViewCategories' }" style="float: left; margin-right: 10px">
+            <router-link :to="{ name: 'ViewCategories' }" style="float: right; margin-right: 10px">
             <button class="btn">Categories</button>
           </router-link> 
           Top Categories</h2>
@@ -58,7 +58,7 @@ export default {
     }
   },
   mounted() {
-    this.categorySize = Math.min(6, this.categories.length );
+    this.categorySize = Math.min(3, this.categories.length );
     this.productSize = Math.min(8, this.products.length);
   }
 };

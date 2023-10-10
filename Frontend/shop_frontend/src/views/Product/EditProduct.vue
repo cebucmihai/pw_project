@@ -81,20 +81,14 @@
         if (confirmation) {
           await axios.delete(`${this.baseURL}product/delete/${this.id}`)
             .then(() => {
-                this.$router.push({ name: 'AdminProduct' });
-          // Reload the page after a short delay
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
-
-          // Redirect to the AdminProduct page after the delay
-          setTimeout(() => {
-            this.$router.push({ name: 'AdminProduct' });
-          }, 1000);
+              this.redirectToAdminCategory();
             })
             .catch((err) => console.log('err', err));
         }
       },
+      redirectToAdminCategory() {
+      window.location.href = "http://localhost:8081/admin/product";
+    },
     },
     mounted() {
       this.id = this.$route.params.id;

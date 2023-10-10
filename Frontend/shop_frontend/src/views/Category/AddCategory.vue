@@ -22,8 +22,8 @@
             <input type="text" class="form-control" v-model="imageUrl" />
           </div>
           <router-link :to="{ name: 'Category' }" style="float: left; margin-right: 10px">
-          <button class="btn">Back</button>
-        </router-link>
+            <button class="btn">Back</button>
+          </router-link>
           <button type="button" class="btn btn-primary" @click="addCategory">
             Submit
           </button>
@@ -33,6 +33,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import swal from "sweetalert";
@@ -47,7 +48,6 @@ export default {
   },
   methods: {
     addCategory() {
-      console.log(this.categoryName, this.description);
       const newCategory = {
         categoryName: this.categoryName,
         description: this.description,
@@ -69,16 +69,20 @@ export default {
             text: "Category added successfully",
             icon: "success",
           }).then(() => {
-            this.$router.push({ path: "/admin/category" }); // Redirect to the specified route
+            this.redirectToAdminCategory();
           });
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    redirectToAdminCategory() {
+      window.location.href = "http://localhost:8081/admin/category";
+    },
   },
 };
 </script>
+
 <style scoped>
 .add_category button {
   margin: 60px 0;
