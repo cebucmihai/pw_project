@@ -13,7 +13,7 @@ import ListProducts from "../views/Category/ListProducts";
 import Cart from '../views/Cart';
 import Signup from "../views/SignUp";
 import Signin from '../views/SignIn';
-
+import ViewCategories from "../views/Category/ViewCategories";
 const routes = [
   {
     path: '/',
@@ -94,6 +94,11 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/categories',
+    name: 'ViewCategories',
+    component: ViewCategories
   }
 ]
 

@@ -3,15 +3,24 @@
  <!--    display categories-->
  <div class="container">
       <div class="row">
+        
         <div class="col-12 text-center">
-          <h2 class="pt-3"> Top Categories</h2>
+          
+          <h2 class="pt-3">
+            <router-link :to="{ name: 'ViewCategories' }" style="float: left; margin-right: 10px">
+            <button class="btn">Categories</button>
+          </router-link> 
+          Top Categories</h2>
+          
         </div>
+        
       </div>
       <div class="row">
         <div v-for="index in this.categorySize" :key="index"
              class="col-md-6 col-xl-4 col-12 pt-3 justify-content-around d-flex">
           <CategoryBox :category="categories[index-1]" />
         </div>
+
       </div>
     </div>
 

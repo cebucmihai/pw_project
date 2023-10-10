@@ -5,18 +5,7 @@
     <router-link class="navbar-brand" :to="{ name: 'Home' }">
       <img id="logo" src="../assets/icon.png" />
     </router-link>
-    <!--    Burger Button-->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
  
       <!-- dropdown for browse -->
@@ -34,10 +23,7 @@
             <router-link class="dropdown-item" :to="{ name: 'Home' }"
               >Home
             </router-link>
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >Product
-            </router-link>
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
+            <router-link class="dropdown-item" :to="{ name: 'ViewCategories' }"
               >Category
             </router-link>
           </div>
